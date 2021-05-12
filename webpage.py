@@ -21,7 +21,7 @@ def load_pickle(path):
 st.title('ARS (Anime Recommender System)')
 
 #load NCF model
-model = load_model("recommender_model_3_3epochs.pt")
+model = load_model('recommender_model_3_3epochs.pt')
 
 #load user_set_dict from pickle file
 user_set_dict = load_pickle('user_set_dict.pickle')
@@ -34,10 +34,12 @@ anime_list = list(anime_dict.keys())
 user_list = st.multiselect('What Animes have you watched?', anime_list, format_func = anime_dict.get)
 
 #slider to choose how many anime recommendations the model will output
-num_recommend = st.slider("Number of Anime Recommendations", 10, 100, 10)
+num_recommend = st.slider('Number of Anime Recommendations', 10, 100, 10)
 
 #button to run model
-if st.button("Give Anime Recommendation"):
+if st.button('Give Anime Recommendation'):
     closest_user = ncf.find_closest_user(user_list, user_set_dict)
     top_recommendations = ncf.recommend_anime(model, closest_user[0], anime_list, anime_dict, user_list, num_recommend)
     st.write(top_recommendations)
+
+st.write('dataset taken from https://www.kaggle.com/hernan4444/anime-recommendation-database-2020')
