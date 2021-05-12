@@ -33,8 +33,6 @@ anime_dict = load_pickle('anime_dict.pickle')
 anime_list = list(anime_dict.keys())
 user_list = st.multiselect('What Animes have you watched?', anime_list, format_func = anime_dict.get)
 
-'Your Anime list: ', user_list
-
 #slider to choose how many anime recommendations the model will output
 num_recommend = st.slider("Number of Anime Recommendations", 10, 100, 10)
 
